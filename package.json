@@ -1,0 +1,24 @@
+{
+  "name": "svg-colored-maps",
+  "version": "1.0.0",
+  "description": "Too to color svg maps based on data",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pliniocampinas/svg-colored-maps.git"
+  },
+  "keywords": [
+    "svg-maps",
+    "choropleth",
+    "colored-maps"
+  ],
+  "author": "Plinio Campinas",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/pliniocampinas/svg-colored-maps/issues"
+  },
+  "homepage": "https://github.com/pliniocampinas/svg-colored-maps#readme"
+}
