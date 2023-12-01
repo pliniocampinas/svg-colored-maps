@@ -1,5 +1,5 @@
 const mapBuildingTools = require('./map-building-tools.js')
-const municipalitiesSvgPath = './map-tools/assets/sp-state-municipalities.svg'
+const municipalitiesSvgPath = 'https://raw.githubusercontent.com/pliniocampinas/svg-colored-maps/main/map-tools/assets/sp-state-municipalities.svg'
 
 class SaoPauloMunicipalitiesMapBuilder {
   constructor(params) {

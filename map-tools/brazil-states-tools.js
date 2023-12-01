@@ -1,5 +1,5 @@
 const mapBuildingTools = require('./map-building-tools.js')
-const statesSvgPath = './map-tools/assets/brazil-states.svg'
+const statesSvgPath = 'https://raw.githubusercontent.com/pliniocampinas/svg-colored-maps/main/map-tools/assets/brazil-states.svg'
 
 class StatesMapBuilder {
   constructor(params) {
