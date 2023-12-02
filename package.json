@@ -1,6 +1,6 @@
 {
   "name": "svg-colored-maps",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "Too to color svg maps based on data",
   "main": "index.js",
   "scripts": {
