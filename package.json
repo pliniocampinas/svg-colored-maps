@@ -1,11 +1,12 @@
 {
   "name": "svg-colored-maps",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Too to color svg maps based on data",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "pack-svgs": "node scripts/pack-svgs.js"
+    "pack-svgs": "node scripts/pack-svgs.js",
+    "sample-app": "node sample-server.js"
   },
   "repository": {
     "type": "git",
