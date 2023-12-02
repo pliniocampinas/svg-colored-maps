@@ -1,5 +1,7 @@
 const mapBuildingTools = require('./map-building-tools.js')
-const statesSvgPath = 'https://raw.githubusercontent.com/pliniocampinas/svg-colored-maps/main/map-tools/assets/brazil-states.svg'
+const statesSvg = require('../maps/brazil-states.svg.js')
+
+const getResolver = () => new Promise((resolve) => resolve(statesSvg))
 
 class BrazilStatesBuilder {
   constructor(params) {
@@ -9,7 +11,7 @@ class BrazilStatesBuilder {
   async render() {
     return mapBuildingTools.render(this, {
       codeAttribute: 'statecode',
-      svgPath: statesSvgPath,
+      svgResolver: getResolver(),
     })
   }
 

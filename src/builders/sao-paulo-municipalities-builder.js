@@ -1,5 +1,7 @@
 const mapBuildingTools = require('./map-building-tools.js')
-const municipalitiesSvgPath = 'https://raw.githubusercontent.com/pliniocampinas/svg-colored-maps/main/map-tools/assets/sp-state-municipalities.svg'
+const municipalitiesSvg = require('../maps/sp-state-municipalities.svg.js')
+
+const getResolver = () => new Promise((resolve) => resolve(municipalitiesSvg))
 
 class SaoPauloMunicipalitiesBuilder {
   constructor(params) {
@@ -9,7 +11,7 @@ class SaoPauloMunicipalitiesBuilder {
   async render() {
     return mapBuildingTools.render(this, {
       codeAttribute: 'citycode',
-      svgPath: municipalitiesSvgPath,
+      svgResolver: getResolver(),
     })
   }
 

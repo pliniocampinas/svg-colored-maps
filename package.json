@@ -4,7 +4,8 @@
   "description": "Too to color svg maps based on data",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "pack-svgs": "node scripts/pack-svgs.js"
   },
   "repository": {
     "type": "git",
