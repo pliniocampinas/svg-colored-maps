@@ -1,9 +1,10 @@
-const mapBuildingTools = require('./map-building-tools.js')
-const municipalitiesSvg = require('../maps/municipalities-map.svg.js')
+import mapBuildingTools from '../map-building-tools.js'
+import municipalitiesSvg from '../maps/municipalities-map.svg.js'
+
 
 const getResolver = () => new Promise((resolve) => resolve(municipalitiesSvg))
 
-class BrazilMunicipalitiesBuilder {
+export class BrazilMunicipalitiesBuilder {
   constructor(params) {
     mapBuildingTools.construct(this, params)
   }
@@ -39,4 +40,4 @@ class BrazilMunicipalitiesBuilder {
   }
 }
 
-module.exports = { BrazilMunicipalitiesBuilder }
+export default { BrazilMunicipalitiesBuilder }

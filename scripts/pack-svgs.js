@@ -11,7 +11,7 @@ async function pack() {
     for (let index = 0; index < assets.length; index++) {
       const assetPath = assets[index];
       const data = await fs.readFile(path.join(__dirname, '..', 'assets', assetPath), { encoding: 'utf8' })
-      const moduleToExport = "module.exports = `" + data + "`"
+      const moduleToExport = "export default `" + data + "`"
       console.log('len', index, data.length)
       fs.appendFile(path.join(__dirname, '..', 'src', 'maps', assetPath + '.js'), moduleToExport, { encoding: 'utf8' })
     }

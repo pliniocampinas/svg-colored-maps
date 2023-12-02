@@ -19,7 +19,7 @@ const getDecileIndex = (decils, value) => {
   return 0
 }
 
-module.exports = {
+export default {
   construct(builderInstance, {
     containerSelector,
     selectedPathClass,
