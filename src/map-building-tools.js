@@ -38,7 +38,7 @@ module.exports = {
 
   async render(builderInstance, {
     codeAttribute,
-    svgPath,
+    svgResolver,
   }) {
     if(builderInstance.rendered) {
       console.error('Render map error: maps can only be rendered once')
@@ -51,8 +51,13 @@ module.exports = {
       return
     }
 
-    const svgText = await fetch(svgPath).then(res => res.text())
-    containerElement.innerHTML = svgText
+    if (typeof svgResolver === 'string') {
+      const svgText = await fetch(svgResolver).then(res => res.text())
+      containerElement.innerHTML = svgText
+    } else {
+      const svgText = await Promise.resolve(svgResolver)
+      containerElement.innerHTML = svgText
+    }
 
     for (const pathElement of containerElement.querySelectorAll('path')) {
       const code = pathElement.getAttribute(codeAttribute)

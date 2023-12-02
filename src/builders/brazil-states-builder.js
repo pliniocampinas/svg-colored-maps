@@ -1,7 +1,7 @@
 const mapBuildingTools = require('./map-building-tools.js')
 const statesSvgPath = 'https://raw.githubusercontent.com/pliniocampinas/svg-colored-maps/main/map-tools/assets/brazil-states.svg'
 
-class StatesMapBuilder {
+class BrazilStatesBuilder {
   constructor(params) {
     mapBuildingTools.construct(this, params)
   }
@@ -29,4 +29,4 @@ class StatesMapBuilder {
   }
 }
 
-module.exports = { StatesMapBuilder }
+module.exports = { BrazilStatesBuilder }

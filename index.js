@@ -1,11 +1,11 @@
-const { MunicipalitiesMapBuilder } = require('./map-tools/brazil-municipalities-tools.js')
-const { StatesMapBuilder } = require('./map-tools/brazil-states-tools.js')
-const { SaoPauloMunicipalitiesMapBuilder } = require('./map-tools/sao-paulo-municipalities-tools.js')
-const mapBuildingTools = require('./map-tools/map-building-tools.js')
+const { BrazilMunicipalitiesBuilder } = require('./src/builders/brazil-municipalities-builder.js')
+const { BrazilStatesBuilder } = require('./src/builders/brazil-states-builder.js')
+const { SaoPauloMunicipalitiesBuilder } = require('./src/builders/sao-paulo-municipalities-builder.js')
+const mapBuildingTools = require('./src/map-building-tools.js')
 
 module.exports = {
-  MunicipalitiesMapBuilder,
-  StatesMapBuilder,
-  SaoPauloMunicipalitiesMapBuilder,
+  BrazilMunicipalitiesBuilder,
+  BrazilStatesBuilder,
+  SaoPauloMunicipalitiesBuilder,
   mapBuildingTools,
 }

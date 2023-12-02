@@ -1,7 +1,7 @@
 const mapBuildingTools = require('./map-building-tools.js')
-const municipalitiesSvgPath = 'https://raw.githubusercontent.com/pliniocampinas/svg-colored-maps/main/map-tools/assets/municipalities-map.svg'
+const municipalitiesSvgPath = 'https://raw.githubusercontent.com/pliniocampinas/svg-colored-maps/main/map-tools/assets/sp-state-municipalities.svg'
 
-class MunicipalitiesMapBuilder {
+class SaoPauloMunicipalitiesBuilder {
   constructor(params) {
     mapBuildingTools.construct(this, params)
   }
@@ -17,14 +17,6 @@ class MunicipalitiesMapBuilder {
     return mapBuildingTools.togglePath(this, code)
   }
 
-  selectPaths(codes) {
-    return mapBuildingTools.selectPaths(this, codes)
-  }
-
-  clearSelectedPaths(codes) {
-    mapBuildingTools.clearSelectedPaths(this, codes)
-  }
-
   colorizeRdYlGn(codesAndValues) {
     this.currentData = codesAndValues
     mapBuildingTools.colorizeRdYlGn(this.pathElementsMap, codesAndValues)
@@ -37,4 +29,4 @@ class MunicipalitiesMapBuilder {
   }
 }
 
-module.exports = { MunicipalitiesMapBuilder }
+module.exports = { SaoPauloMunicipalitiesBuilder }
