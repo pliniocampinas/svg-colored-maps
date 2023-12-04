@@ -51,11 +51,12 @@ const colorWithGdp = async () => {
 }
 ```
 
-### mapBuildingTools methods
+## mapBuildingTools Methods
 
 The methods are built to support the implementation of a builder class, but without restricting the interface with a base class. For that reason the methods often receive a builderInstance parameter.
 
-| Method | Description | 
+
+| Parameter | Description | 
 | --- | --- |
 | construct(builderInstance, configParams) | Initiate a builderInstance with the necessary parameters. |
 | render(builderInstance, renderParams) | Render an svg map on the configured container element |
@@ -66,6 +67,27 @@ The methods are built to support the implementation of a builder class, but with
 | clearSelectedPaths(builderInstance, codes) | Remove the selected class from a list of pathElements. |
 | selectPaths(builderInstance, codes) | Add the selected class to a list of pathElements. |
 
-### mapBuildingTools types
 
----
+### mapBuildingTools.construct
+
+Initialize an object that will hold the states of the map builder.
+
+| Parameter | Type | Description | 
+| --- | --- | --- |
+| builderInstance | BuilderInstance | States of the builder. |
+| configParams | ConfigParams | Base configurations. |
+
+## mapBuildingTools Types
+
+### BuilderInstance
+
+| Property | Type | Description | 
+| --- | --- | --- |
+| rendered | boolean | Set to true if the map renders successfully. |
+| containerSelector | string | CSS selector where the svg element will be appended. |
+| selectedPathClass | string | CSS class to style a path element with a selected state. |
+| onPathClick | function(details: {code: string, pathElement: HTMLElement}) | Event triggered on click. The code is the key of the element. |
+| pathElementsMap | HTMLElement[code: string] | Object with key-values of all path elements of the initialized map. |
+| currentData | Array<{code: string, value: any}> | Array of codes and values that will base the colors of the map. |
+| selectedCodes | Array<string> | List of codes with selected state. |
+
