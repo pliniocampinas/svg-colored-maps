@@ -50,3 +50,22 @@ const colorWithGdp = async () => {
   mapBuilder.colorizeRdYlGn(sampleData)
 }
 ```
+
+### mapBuildingTools methods
+
+The methods are built to support the implementation of a builder class, but without restricting the interface with a base class. For that reason the methods often receive a builderInstance parameter.
+
+| Method | Description | 
+| --- | --- |
+| construct(builderInstance, configParams) | Initiate a builderInstance with the necessary parameters. |
+| render(builderInstance, renderParams) | Render an svg map on the configured container element |
+| colorizeRdYlGn(pathElementsMap, codesAndValues) | Color pathElements with a Red-Yellow-Green pallete based on a 10-quantil, or decil. |
+| colorizeCategories(pathElementsMap, codesAndValues, { customPallete } = {}) | Color pathElements with a 10 colors pallete proper for categorical data types, non ordinal. |
+| togglePath(builderInstance, code) | Add the selected class or remove it if already selected. |
+| clearAllSelectedPaths(builderInstance) | Remove the selected class from all pathElements. |
+| clearSelectedPaths(builderInstance, codes) | Remove the selected class from a list of pathElements. |
+| selectPaths(builderInstance, codes) | Add the selected class to a list of pathElements. |
+
+### mapBuildingTools types
+
+---
