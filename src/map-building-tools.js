@@ -23,7 +23,9 @@ export default {
   construct(builderInstance, {
     containerSelector,
     selectedPathClass,
-    onPathClick
+    onPathClick,
+    codeAttribute,
+    svgResolver,
   }) {
     builderInstance.rendered = false
     builderInstance.containerSelector = containerSelector
@@ -34,12 +36,11 @@ export default {
     builderInstance.pathElementsMap = {}
     builderInstance.currentData = []
     builderInstance.selectedCodes = []
+    builderInstance.codeAttribute = codeAttribute || 'code'
+    builderInstance.svgResolver = svgResolver 
   },
 
-  async render(builderInstance, {
-    codeAttribute,
-    svgResolver,
-  }) {
+  async render(builderInstance) {
     if(builderInstance.rendered) {
       console.error('Render map error: maps can only be rendered once')
       return
@@ -51,16 +52,19 @@ export default {
       return
     }
 
-    if (typeof svgResolver === 'string') {
-      const svgText = await fetch(svgResolver).then(res => res.text())
+    if (typeof builderInstance.svgResolver === 'string') {
+      const svgText = await fetch(builderInstance.svgResolver).then(res => res.text())
+      containerElement.innerHTML = svgText
+    } else if (typeof builderInstance.svgResolver === 'function') {
+      const svgText = await Promise.resolve(builderInstance.svgResolver())
       containerElement.innerHTML = svgText
     } else {
-      const svgText = await Promise.resolve(svgResolver)
+      const svgText = await Promise.resolve(builderInstance.svgResolver)
       containerElement.innerHTML = svgText
     }
 
     for (const pathElement of containerElement.querySelectorAll('path')) {
-      const code = pathElement.getAttribute(codeAttribute)
+      const code = pathElement.getAttribute(builderInstance.codeAttribute)
       if(!code) {
         continue
       }

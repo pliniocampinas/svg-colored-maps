@@ -5,14 +5,15 @@ const getResolver = () => new Promise((resolve) => resolve(statesSvg))
 
 export class BrazilStatesBuilder {
   constructor(params) {
-    mapBuildingTools.construct(this, params)
+    mapBuildingTools.construct(this, {
+      ...params,
+      codeAttribute: 'statecode',
+      svgResolver: getResolver,
+    })
   }
 
   async render() {
-    return mapBuildingTools.render(this, {
-      codeAttribute: 'statecode',
-      svgResolver: getResolver(),
-    })
+    return mapBuildingTools.render(this)
   }
 
   togglePath(code) {

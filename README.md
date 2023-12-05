@@ -79,15 +79,6 @@ Initialize an object with the states of the builder.
 | builderInstance | BuilderInstance | States of the builder. |
 | configParams | ConfigParams | Base configurations. |
 
-### mapBuildingTools.render
-
-Create the svg element inside the container.
-
-| Parameter | Type | Description | 
-| --- | --- | --- |
-| builderInstance | BuilderInstance | States of the builder. |
-| renderParams | { codeAttribute: string, svgResolver: Promise<string> \| string } | Rendering parameters. String type is read as an URL. |
-
 ### mapBuildingTools.colorizeRdYlGn
 
 Colorize pathElements with a Red-Yellow-Green pallete based on a 10-quantil, or decil.
@@ -129,6 +120,8 @@ Add the selected class or remove it if already selected.
 | pathElementsMap | HTMLElement[code: string] | Object with key-values of all path elements of the map. |
 | currentData | Array<{code: string, value: any}> | Array of codes and values that will base the colors of the map. |
 | selectedCodes | Array<string> | List of codes with selected state. |
+| codeAttribute | string | HTML element attribute that represents the code. Ex: 'id', 'citycode' |
+| svgResolver | string \| Promise<string> \| function(): Promise<string> \| string> | String type is read as an URL, Promises will be resolved as innerHTML, same for functions returning Promises and strings. |
 
 ### ConfigParams
 
