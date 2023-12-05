@@ -1,6 +1,6 @@
 {
   "name": "svg-colored-maps",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "Too to color svg maps based on data",
   "main": "index.js",
   "scripts": {
@@ -18,7 +18,7 @@
     "colored-maps"
   ],
   "author": "Plinio Campinas",
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/pliniocampinas/svg-colored-maps/issues"
   },
