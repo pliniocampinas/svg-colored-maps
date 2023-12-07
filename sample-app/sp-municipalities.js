@@ -21,9 +21,9 @@ const buildParameters = {
 const mapBuilder = new SaoPauloMunicipalitiesBuilder(buildParameters);
 mapBuilder
   .render()
-  .then(() => colorWithGdp())
+  .then(() => colorWithGdp('state-rgb'))
 
-const colorWithGdp = async () => {
+const colorWithGdp = async (view) => {
   const codesWithStates = (await fetch('./sample-data/municipalities-codes.json')
     .then(res => res.json()))
     .filter(d => d.stateAcronym === 'SP')
@@ -38,7 +38,12 @@ const colorWithGdp = async () => {
     }))
   
   fillTable(sampleData)
-  mapBuilder.colorizeRdYlGn(sampleData)
+  if(view === 'state-rgb') {
+    mapBuilder.colorizeRdYlGn(sampleData)
+  }
+  if(view === 'state-blues') {
+    mapBuilder.colorizeBlues(sampleData)
+  }
   clearColorLabels()
   clearDetails()
   onFillDetails = ({code}) => {
@@ -50,4 +55,5 @@ const colorWithGdp = async () => {
   }
 }
 
-document.querySelector('.switch-view-button[view-name="gdp-per-capita"]').addEventListener('click', colorWithGdp)
+document.querySelector('.switch-view-button[view-name="state-rgb"]').addEventListener('click', () => colorWithGdp('state-rgb'))
+document.querySelector('.switch-view-button[view-name="state-blues"]').addEventListener('click', () => colorWithGdp('state-blues'))

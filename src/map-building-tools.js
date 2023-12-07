@@ -24,15 +24,15 @@ export default {
     containerSelector,
     selectedPathClass,
     onPathClick,
+    onLoad,
     codeAttribute,
     svgResolver,
   }) {
     builderInstance.rendered = false
     builderInstance.containerSelector = containerSelector
     builderInstance.selectedPathClass = selectedPathClass
-    builderInstance.onPathClick = onPathClick || ((details) => {
-      console.log('click details:', details)
-    })
+    builderInstance.onPathClick = onPathClick || ((details) => console.log('click details:', details))
+    builderInstance.onLoad = onLoad || (() => console.log('map loaded'))
     builderInstance.pathElementsMap = {}
     builderInstance.currentData = []
     builderInstance.selectedCodes = []
@@ -63,6 +63,8 @@ export default {
       containerElement.innerHTML = svgText
     }
 
+    builderInstance.onLoad()
+
     for (const pathElement of containerElement.querySelectorAll('path')) {
       const code = pathElement.getAttribute(builderInstance.codeAttribute)
       if(!code) {
@@ -80,16 +82,25 @@ export default {
   },
 
   colorizeRdYlGn(pathElementsMap, codesAndValues) {
-    const RdYlGn10 = ["#a50026","#d73027","#f46d43","#fdae61","#fee08b","#d9ef8b","#a6d96a","#66bd63","#1a9850","#006837"]
+    const RdYlGn10 = ['#a50026', '#d73027', '#f46d43', '#fdae61', '#fee08b', '#d9ef8b', '#a6d96a', '#66bd63', '#1a9850', '#006837']
     const deciles = getDeciles(codesAndValues.map(d => d.value))
     codesAndValues.forEach(element => {
       const decileIndex = getDecileIndex(deciles, element.value)
-      pathElementsMap[element.code]?.setAttribute("fill", RdYlGn10[decileIndex])
+      pathElementsMap[element.code]?.setAttribute('fill', RdYlGn10[decileIndex])
+    })
+  },
+
+  colorizeBlues(pathElementsMap, codesAndValues) {
+    const blues =  ['#8fffff', '#00ffff', '#00bfff', '#009fff', '#0080ff', '#0060ff', '#0040ff', '#0020ff', '#0010d9', '#0000b3']
+    const deciles = getDeciles(codesAndValues.map(d => d.value))
+    codesAndValues.forEach(element => {
+      const decileIndex = getDecileIndex(deciles, element.value)
+      pathElementsMap[element.code]?.setAttribute('fill', blues[decileIndex])
     })
   },
 
   colorizeCategories(pathElementsMap, codesAndValues, { customPallete } = {}) {
-    const categoricalPallete = customPallete?? ["#1f77b4","#ff7f0e","#2ca02c","#d62728","#9467bd","#8c564b","#e377c2","#7f7f7f","#bcbd22","#17becf"]
+    const categoricalPallete = customPallete?? ['#1f77b4','#ff7f0e','#2ca02c','#d62728','#9467bd','#8c564b','#e377c2','#7f7f7f','#bcbd22','#17becf']
     const uniqueValues = [...new Set(codesAndValues.map(d => d.value))]
     if(uniqueValues.length > categoricalPallete.length) {
       console.warn('There are more unique values than colors in the pallete, there will be repeated colors')
@@ -103,7 +114,7 @@ export default {
       if (!color) {
         return
       }
-      pathElementsMap[element.code]?.setAttribute("fill", color)
+      pathElementsMap[element.code]?.setAttribute('fill', color)
     })
 
     return colorMap

@@ -20,6 +20,11 @@ export class SaoPauloMunicipalitiesBuilder {
     return mapBuildingTools.togglePath(this, code)
   }
 
+  colorizeBlues(codesAndValues) {
+    this.currentData = codesAndValues
+    mapBuildingTools.colorizeBlues(this.pathElementsMap, codesAndValues)
+  }
+
   colorizeRdYlGn(codesAndValues) {
     this.currentData = codesAndValues
     mapBuildingTools.colorizeRdYlGn(this.pathElementsMap, codesAndValues)
