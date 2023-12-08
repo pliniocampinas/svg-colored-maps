@@ -1,18 +1,18 @@
-const getDeciles = (values) => {
+const getQuantiles = (values, nTil) => {
   const orderedValues = values.slice().sort((a,b) => a - b)
   const deciles = []
-  for (let nthDecile = 1; nthDecile <= 10; nthDecile++) {
-    const decileIndex = Math.ceil(orderedValues.length * (nthDecile / 10)) - 1
+  for (let nthDecile = 1; nthDecile <= nTil; nthDecile++) {
+    const decileIndex = Math.ceil(orderedValues.length * (nthDecile / nTil)) - 1
     deciles.push(orderedValues[decileIndex])
   }
 
   return deciles
 }
 
-const getDecileIndex = (decils, value) => {
-  for (let index = 0; index < decils.length; index++) {
-    const decilUpperValue = decils[index];
-    if(value <= decilUpperValue) {
+const getQuantilIndex = (quantiles, value) => {
+  for (let index = 0; index < quantiles.length; index++) {
+    const quantilUpperValue = quantiles[index];
+    if(value <= quantilUpperValue) {
       return index
     }
   }
@@ -83,19 +83,19 @@ export default {
 
   colorizeRdYlGn(pathElementsMap, codesAndValues) {
     const RdYlGn10 = ['#a50026', '#d73027', '#f46d43', '#fdae61', '#fee08b', '#d9ef8b', '#a6d96a', '#66bd63', '#1a9850', '#006837']
-    const deciles = getDeciles(codesAndValues.map(d => d.value))
+    const quantiles = getQuantiles(codesAndValues.map(d => d.value), RdYlGn10.length)
     codesAndValues.forEach(element => {
-      const decileIndex = getDecileIndex(deciles, element.value)
+      const decileIndex = getQuantilIndex(quantiles, element.value)
       pathElementsMap[element.code]?.setAttribute('fill', RdYlGn10[decileIndex])
     })
   },
 
   colorizeBlues(pathElementsMap, codesAndValues) {
     const blues =  ['#8fffff', '#00ffff', '#00bfff', '#009fff', '#0080ff', '#0060ff', '#0040ff', '#0020ff', '#0010d9', '#0000b3']
-    const deciles = getDeciles(codesAndValues.map(d => d.value))
+    const quantiles = getQuantiles(codesAndValues.map(d => d.value), blues.length)
     codesAndValues.forEach(element => {
-      const decileIndex = getDecileIndex(deciles, element.value)
-      pathElementsMap[element.code]?.setAttribute('fill', blues[decileIndex])
+      const quantileIndex = getQuantilIndex(quantiles, element.value)
+      pathElementsMap[element.code]?.setAttribute('fill', blues[quantileIndex])
     })
   },
 
