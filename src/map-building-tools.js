@@ -1,12 +1,12 @@
 const getQuantiles = (values, nTil) => {
   const orderedValues = values.slice().sort((a,b) => a - b)
-  const deciles = []
-  for (let nthDecile = 1; nthDecile <= nTil; nthDecile++) {
-    const decileIndex = Math.ceil(orderedValues.length * (nthDecile / nTil)) - 1
-    deciles.push(orderedValues[decileIndex])
+  const quantiles = []
+  for (let nthQuantile = 1; nthQuantile <= nTil; nthQuantile++) {
+    const quantileIndex = Math.ceil(orderedValues.length * (nthQuantile / nTil)) - 1
+    quantiles.push(orderedValues[quantileIndex])
   }
 
-  return deciles
+  return quantiles
 }
 
 const getQuantilIndex = (quantiles, value) => {
@@ -85,17 +85,24 @@ export default {
     const RdYlGn10 = ['#a50026', '#d73027', '#f46d43', '#fdae61', '#fee08b', '#d9ef8b', '#a6d96a', '#66bd63', '#1a9850', '#006837']
     const quantiles = getQuantiles(codesAndValues.map(d => d.value), RdYlGn10.length)
     codesAndValues.forEach(element => {
-      const decileIndex = getQuantilIndex(quantiles, element.value)
-      pathElementsMap[element.code]?.setAttribute('fill', RdYlGn10[decileIndex])
+      const quantileIndex = getQuantilIndex(quantiles, element.value)
+      pathElementsMap[element.code]?.setAttribute('fill', RdYlGn10[quantileIndex])
     })
   },
 
-  colorizeBlues(pathElementsMap, codesAndValues) {
-    const blues =  ['#8fffff', '#00ffff', '#00bfff', '#009fff', '#0080ff', '#0060ff', '#0040ff', '#0020ff', '#0010d9', '#0000b3']
-    const quantiles = getQuantiles(codesAndValues.map(d => d.value), blues.length)
+  colorizeBlues(pathElementsMap, codesAndValues, { numberOfQuantiles } = {}) {
+    const defaultBlues =  ['#8fffff', '#00ffff', '#00bfff', '#009fff', '#0080ff', '#0060ff', '#0040ff', '#0020ff', '#0010d9', '#0000b3']
+    let nQuantiles = defaultBlues.length
+    if (numberOfQuantiles > 0 && numberOfQuantiles < defaultBlues.length) {
+    // TODO: Extract the collors from the edges when quantile is smaller than default pallete.
+    // This way the tones will contrast. Instead of reading the indexes linearly.
+    // Think of an algorithm to increase constrast.
+      nQuantiles = numberOfQuantiles
+    }
+    const quantiles = getQuantiles(codesAndValues.map(d => d.value), nQuantiles)
     codesAndValues.forEach(element => {
       const quantileIndex = getQuantilIndex(quantiles, element.value)
-      pathElementsMap[element.code]?.setAttribute('fill', blues[quantileIndex])
+      pathElementsMap[element.code]?.setAttribute('fill', defaultBlues[quantileIndex])
     })
   },
 

@@ -22,7 +22,9 @@ export class SaoPauloMunicipalitiesBuilder {
 
   colorizeBlues(codesAndValues) {
     this.currentData = codesAndValues
-    mapBuildingTools.colorizeBlues(this.pathElementsMap, codesAndValues)
+    mapBuildingTools.colorizeBlues(this.pathElementsMap, codesAndValues, {
+      numberOfQuantiles: 4
+    })
   }
 
   colorizeRdYlGn(codesAndValues) {
