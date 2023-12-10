@@ -19,6 +19,30 @@ const getQuantilIndex = (quantiles, value) => {
   return 0
 }
 
+const shrinkPalleteWithContrast = (originalPallete, newLength) => {
+  if (originalPallete.length <= 2) {
+    return [...originalPallete]
+  }
+
+  if (newLength == 2) {
+    return [originalPallete.at(0), originalPallete.at(-1)]
+  }
+
+  const newPallete = []
+  const leap =  Math.floor(originalPallete.length/newLength);
+  let cursor = 0
+  while(newPallete.length < newLength - 1) {
+    newPallete.push(originalPallete[cursor])
+    if(cursor == 0) {
+      cursor++
+    }
+    cursor+= leap
+  }
+  const last = originalPallete.at(-1)
+  newPallete.push(last)
+  return newPallete
+}
+
 export default {
   construct(builderInstance, {
     containerSelector,
@@ -93,16 +117,15 @@ export default {
   colorizeBlues(pathElementsMap, codesAndValues, { numberOfQuantiles } = {}) {
     const defaultBlues =  ['#8fffff', '#00ffff', '#00bfff', '#009fff', '#0080ff', '#0060ff', '#0040ff', '#0020ff', '#0010d9', '#0000b3']
     let nQuantiles = defaultBlues.length
+    let pallete = defaultBlues
     if (numberOfQuantiles > 0 && numberOfQuantiles < defaultBlues.length) {
-    // TODO: Extract the collors from the edges when quantile is smaller than default pallete.
-    // This way the tones will contrast. Instead of reading the indexes linearly.
-    // Think of an algorithm to increase constrast.
       nQuantiles = numberOfQuantiles
+      pallete = shrinkPalleteWithContrast(defaultBlues, numberOfQuantiles)
     }
     const quantiles = getQuantiles(codesAndValues.map(d => d.value), nQuantiles)
     codesAndValues.forEach(element => {
       const quantileIndex = getQuantilIndex(quantiles, element.value)
-      pathElementsMap[element.code]?.setAttribute('fill', defaultBlues[quantileIndex])
+      pathElementsMap[element.code]?.setAttribute('fill', pallete[quantileIndex])
     })
   },
 
