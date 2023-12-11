@@ -44,6 +44,9 @@ const colorWithGdp = async (view) => {
   if(view === 'state-blues') {
     mapBuilder.colorizeBlues(sampleData)
   }
+  if(view === 'state-greens') {
+    mapBuilder.colorizeGreens(sampleData)
+  }
   clearColorLabels()
   clearDetails()
   onFillDetails = ({code}) => {
@@ -55,5 +58,21 @@ const colorWithGdp = async (view) => {
   }
 }
 
+const changeViewFunctions = [
+  () => colorWithGdp('state-rgb'),
+  () => colorWithGdp('state-blues'),
+  () => colorWithGdp('state-greens'),
+]
+let viewIndex = 0
+const loop = setInterval(() => {
+  changeViewFunctions[viewIndex]()
+  if(viewIndex === changeViewFunctions.length - 1) {
+    viewIndex = 0
+    return
+  }
+  viewIndex++
+}, 1000)
+
 document.querySelector('.switch-view-button[view-name="state-rgb"]').addEventListener('click', () => colorWithGdp('state-rgb'))
 document.querySelector('.switch-view-button[view-name="state-blues"]').addEventListener('click', () => colorWithGdp('state-blues'))
+document.querySelector('.switch-view-button[view-name="state-greens"]').addEventListener('click', () => colorWithGdp('state-greens'))

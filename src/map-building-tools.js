@@ -129,6 +129,15 @@ export default {
     })
   },
 
+  colorizeCustomWithPallete(pathElementsMap, codesAndValues, { customPallete } = {}) {
+    let nQuantiles = customPallete.length
+    const quantiles = getQuantiles(codesAndValues.map(d => d.value), nQuantiles)
+    codesAndValues.forEach(element => {
+      const quantileIndex = getQuantilIndex(quantiles, element.value)
+      pathElementsMap[element.code]?.setAttribute('fill', customPallete[quantileIndex])
+    })
+  },
+
   colorizeCategories(pathElementsMap, codesAndValues, { customPallete } = {}) {
     const categoricalPallete = customPallete?? ['#1f77b4','#ff7f0e','#2ca02c','#d62728','#9467bd','#8c564b','#e377c2','#7f7f7f','#bcbd22','#17becf']
     const uniqueValues = [...new Set(codesAndValues.map(d => d.value))]

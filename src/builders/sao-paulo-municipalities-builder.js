@@ -32,6 +32,13 @@ export class SaoPauloMunicipalitiesBuilder {
     mapBuildingTools.colorizeRdYlGn(this.pathElementsMap, codesAndValues)
   }
 
+  colorizeGreens(codesAndValues) {
+    this.currentData = codesAndValues
+    mapBuildingTools.colorizeCustomWithPallete(this.pathElementsMap, codesAndValues, { 
+      customPallete: ["#f7fcf5","#e5f5e0","#c7e9c0","#a1d99b","#74c476","#41ab5d","#238b45","#006d2c","#00441b"]
+    })
+  }
+
   colorizeCategories(codesAndValues, { customPallete } = {}) {
     this.currentData = codesAndValues
     const colorMap = mapBuildingTools.colorizeCategories(this.pathElementsMap, codesAndValues, {customPallete})
