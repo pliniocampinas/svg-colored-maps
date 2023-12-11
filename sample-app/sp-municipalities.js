@@ -73,6 +73,6 @@ const loop = setInterval(() => {
   viewIndex++
 }, 1000)
 
-document.querySelector('.switch-view-button[view-name="state-rgb"]').addEventListener('click', () => colorWithGdp('state-rgb'))
-document.querySelector('.switch-view-button[view-name="state-blues"]').addEventListener('click', () => colorWithGdp('state-blues'))
-document.querySelector('.switch-view-button[view-name="state-greens"]').addEventListener('click', () => colorWithGdp('state-greens'))
+document.querySelector('.switch-view-button[view-name="state-rgb"]').addEventListener('click', () => colorWithGdp('state-rgb') && clearInterval(loop))
+document.querySelector('.switch-view-button[view-name="state-blues"]').addEventListener('click', () => colorWithGdp('state-blues') && clearInterval(loop))
+document.querySelector('.switch-view-button[view-name="state-greens"]').addEventListener('click', () => colorWithGdp('state-greens') && clearInterval(loop))
