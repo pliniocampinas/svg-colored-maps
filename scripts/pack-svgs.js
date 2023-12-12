@@ -5,6 +5,7 @@ const assets = [
   'brazil-states.svg',
   'municipalities-map.svg',
   'sp-state-municipalities.svg',
+  'world-map.svg',
 ]
 async function pack() {
   try {
@@ -13,7 +14,7 @@ async function pack() {
       const data = await fs.readFile(path.join(__dirname, '..', 'assets', assetPath), { encoding: 'utf8' })
       const moduleToExport = "export default `" + data + "`"
       console.log('len', index, data.length)
-      fs.appendFile(path.join(__dirname, '..', 'src', 'maps', assetPath + '.js'), moduleToExport, { encoding: 'utf8' })
+      fs.writeFile(path.join(__dirname, '..', 'src', 'maps', assetPath + '.js'), moduleToExport, { encoding: 'utf8' })
     }
   } catch (err) {
     console.log(err)
