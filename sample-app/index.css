@@ -11,8 +11,10 @@
   justify-content: center;
 }
 
-#municipalities-map, #states-map {
-  max-width: 500px;
+#municipalities-map,
+#states-map,
+#world-map {
+  max-width: 600px;
   width: 100%;
   height: 550px;
   border: 1px solid whitesmoke;
@@ -20,7 +22,8 @@
 }
 
 #municipalities-map svg,
-#states-map svg {
+#states-map svg,
+#world-map svg {
   width: 100%;
   height: 100%;
 }

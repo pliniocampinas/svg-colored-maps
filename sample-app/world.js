@@ -27,7 +27,7 @@ const colorWithGdp = async (view) => {
   const sampleData = (await fetch('./sample-data/countries-gdp.json')
     .then(res => res.json()))
     .map(d => ({
-      code: d.ISO3,
+      code: d.ISO2,
       value: d.GDP
     }))
   mapBuilder.colorizeRdYlGn(sampleData)

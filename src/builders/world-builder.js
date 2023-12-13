@@ -7,7 +7,7 @@ export class WorldBuilder {
   constructor(params) {
     mapBuildingTools.construct(this, {
       ...params,
-      codeAttribute: 'data-iso_a3_eh',
+      codeAttribute: 'id',
       svgResolver: getResolver,
     })
   }
