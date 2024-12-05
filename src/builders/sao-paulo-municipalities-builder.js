@@ -1,7 +1,13 @@
 import mapBuildingTools from '../map-building-tools.js'
-import municipalitiesSvg from '../maps/sp-state-municipalities.svg.js'
 
-const getResolver = () => new Promise((resolve) => resolve(municipalitiesSvg))
+export async function getResolver() {
+  try {
+    const svg = await import('../maps/sp-state-municipalities.svg');
+    return svg.default; // Contains the raw SVG content
+  } catch (error) {
+    throw new Error(`Error importing SVG sp-state-municipalities.svg: ${error.message}`);
+  }
+}
 
 export class SaoPauloMunicipalitiesBuilder {
   constructor(params) {

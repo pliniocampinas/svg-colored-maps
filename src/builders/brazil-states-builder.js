@@ -1,7 +1,13 @@
 import mapBuildingTools from '../map-building-tools.js'
-import statesSvg from '../maps/brazil-states.svg.js'
 
-const getResolver = () => new Promise((resolve) => resolve(statesSvg))
+export async function getResolver() {
+  try {
+    const svg = await import('../maps/brazil-states.svg');
+    return svg.default; // Contains the raw SVG content
+  } catch (error) {
+    throw new Error(`Error importing SVG brazil-states.svg: ${error.message}`);
+  }
+}
 
 export class BrazilStatesBuilder {
   constructor(params) {

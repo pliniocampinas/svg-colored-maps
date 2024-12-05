@@ -1,7 +1,13 @@
 import mapBuildingTools from '../map-building-tools.js'
-import worldSvg from '../maps/world-map.svg.js'
 
-const getResolver = () => new Promise((resolve) => resolve(worldSvg))
+export async function getResolver() {
+  try {
+    const svg = await import('../maps/world-map.svg');
+    return svg.default; // Contains the raw SVG content
+  } catch (error) {
+    throw new Error(`Error importing SVG world-map.svg: ${error.message}`);
+  }
+}
 
 export class WorldBuilder {
   constructor(params) {

@@ -2,10 +2,12 @@
   "name": "svg-colored-maps",
   "version": "1.0.5",
   "description": "Tool to color svg maps based on data",
+  "type": "module",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "pack-svgs": "node scripts/pack-svgs.js",
+    "build": "rollup --config",
     "sample-app": "node sample-server.js"
   },
   "repository": {
@@ -22,5 +24,9 @@
   "bugs": {
     "url": "https://github.com/pliniocampinas/svg-colored-maps/issues"
   },
-  "homepage": "https://github.com/pliniocampinas/svg-colored-maps#readme"
+  "homepage": "https://github.com/pliniocampinas/svg-colored-maps#readme",
+  "devDependencies": {
+    "rollup": "^4.28.0",
+    "@rollup/plugin-url": "^8.0.2"
+  }
 }
