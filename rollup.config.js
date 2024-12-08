@@ -1,15 +1,18 @@
-import url from '@rollup/plugin-url';
+import svg from 'rollup-plugin-svg-import';
 
 export default {
   input: 'src/index.js',
   output: {
-    file: 'dist/index.js',
-    inlineDynamicImports: true,
+		dir: 'dist',
   },
   plugins: [
-    url({
-      include: '**/*.svg',
-      limit: 0, // Forces inline SVGs as raw text
-    }),
+    svg({
+      /**
+       * If `true`, instructs the plugin to import an SVG as string.
+       * For example, for Server Side Rendering.
+       * Otherwise, the plugin imports SVG as DOM node.
+       */
+       stringify: true
+     }),
   ],
 };
