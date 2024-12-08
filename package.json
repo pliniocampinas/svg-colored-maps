@@ -1,9 +1,12 @@
 {
   "name": "svg-colored-maps",
-  "version": "1.0.5",
+  "version": "1.1.0",
   "description": "Tool to color svg maps based on data",
   "type": "module",
-  "main": "index.js",
+  "main": "dist/index.js",
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "pack-svgs": "node scripts/pack-svgs.js",
