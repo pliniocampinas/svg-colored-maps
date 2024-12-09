@@ -1,5 +1,5 @@
 {
-  "name": "rollup-starter-app",
+  "name": "svg-colored-maps-sample-app",
   "devDependencies": {
     "@rollup/plugin-commonjs": "^17.0.0",
     "@rollup/plugin-json": "^6.1.0",
@@ -10,8 +10,7 @@
     "serve": "^11.3.2"
   },
   "dependencies": {
-    "date-fns": "^2.16.1",
-    "svg-colored-maps": "^1.0.5"
+    "svg-colored-maps": "^1.1.0"
   },
   "scripts": {
     "build": "rollup -c",
